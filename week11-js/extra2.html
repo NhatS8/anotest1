@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+        }
+        input, button, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Circle Calculator</h2>
+        <select id="type">
+            <option value="radius">Input Radius</option>
+            <option value="diameter">Input Diameter</option>
+        </select>
+        <input type="number" id="value" placeholder="Enter value">
+
+        <button onclick="calculateCircle()">Calculate</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCircle() {
+            const value = parseFloat(document.getElementById('value').value);
+            const type = document.getElementById('type').value;
+            const pi = 3.14;
+
+            if (isNaN(value) || value <= 0) {
+                document.getElementById('result').innerHTML = "Please enter a valid positive number.";
+                return;
+            }
+
+            let radius = type === 'radius' ? value : value / 2;
+
+            const perimeter = 2 * pi * radius;
+            const area = pi * radius * radius;
+
+            document.getElementById('result').innerHTML = 
+                `Perimeter: <strong>${perimeter.toFixed(2)}</strong> <br> Area: <strong>${area.toFixed(2)}</strong>`;
+        }
+    </script>
+</body>
+</html>
