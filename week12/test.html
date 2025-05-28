@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscription Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f4f4f4;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      align-self: center;
+    }
+
+    .full-row {
+      grid-column: 1 / -1;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    input[type="submit"] {
+      grid-column: 1 / -1;
+      padding: 0.5rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="subscriptionForm">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label>Subscription Type:</label>
+    <div>
+      <label><input type="radio" name="subscription" value="monthly" required> Monthly</label>
+      <label><input type="radio" name="subscription" value="yearly"> Yearly</label>
+    </div>
+
+    <label>Interests:</label>
+    <div>
+      <label><input type="checkbox" name="interests" value="tech"> Tech</label>
+      <label><input type="checkbox" name="interests" value="music"> Music</label>
+      <label><input type="checkbox" name="interests" value="sports"> Sports</label>
+    </div>
+
+    <input type="submit" value="Subscribe">
+  </form>
+
+  <div id="successMessage" class="success">Form submitted successfully!</div>
+
+  <script>
+    document.getElementById("subscriptionForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // prevent default form submission
+
+      const name = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const nameValid = name.length >= 3;
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!nameValid) {
+        alert("Full name must be at least 3 characters.");
+        return;
+      }
+
+      if (!emailValid) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      // Show success message
+      document.getElementById("successMessage").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

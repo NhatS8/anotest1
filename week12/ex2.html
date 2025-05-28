@@ -3,6 +3,7 @@
 <head>
     <title>Register New Account</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
         body {
             display: flex;
@@ -23,6 +24,7 @@
             background-color: #f9f9f9; /* Optional: Adds a background color */
         }
     </style>
+
     <script>
         function formValid() {
             var f = document.frmRegister;
@@ -34,7 +36,7 @@
                 f.txtUsername.focus();
                 return false;
             }
-            if (f.txtPassword1.value.length < 6) {
+            if (f.txtPassword1.value.length < 6 || f.txtPassword1.value.length > 20) {
                 alert("Password length must be from 6 to 20 characters");
                 f.txtPassword1.focus();
                 return false;
@@ -65,7 +67,7 @@
                 return false;
             }
             if (f.txtDescription.value == "") {
-                alert("You must enter description");
+                alert("You must enter your description");
                 f.txtDescription.focus();
                 return false;
             }
